@@ -1,0 +1,10 @@
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\bin\Debug\sortingAlgorithmVisualizer.exe.config
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\bin\Debug\sortingAlgorithmVisualizer.exe
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\bin\Debug\sortingAlgorithmVisualizer.pdb
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.csprojAssemblyReference.cache
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.Form1.resources
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.Properties.Resources.resources
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.csproj.GenerateResource.cache
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.exe
+C:\Users\Andrew\Desktop\projects\sortingAlgorithmVisualizer\obj\Debug\sortingAlgorithmVisualizer.pdb
