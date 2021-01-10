@@ -3,37 +3,35 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace sortingAlgorithmVisualizer
 {
-    class bubbleSortEngine : iSortEngine
+    class bubbleSortEngine : ISortEngine
     {
-        private bool sorted = false;
         private int[] theArray;
         private Graphics g;
         private int maxVal;
         Brush whiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush blackBrush =  new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-        public void DoWork(int[] theArrayIn, Graphics gIn, int maxValIn)
+        public bubbleSortEngine(int[] theArrayIn, Graphics gIn, int maxValIn)
         {
             theArray = theArrayIn;
             g = gIn;
             maxVal = maxValIn;
-            while (!sorted)
-            {
-                for (int i = 0; i < theArray.Count() - 1; i++)
-                {
-                    if (theArray[i] > theArray[i + 1])
-                    {
-                        swap(i, i + 1);
-                    }
 
+        }
+        public void nextStep()
+        {
+            for (int i = 0; i < theArray.Count() - 1; i++)
+            {
+                if (theArray[i] > theArray[i + 1])
+                {
+                    swap(i, i + 1);
                 }
-                sorted = isSorted();
+
             }
         }
-        private bool isSorted()
+        public bool isSorted() //public so that it can be checked by the caller
         {
             for (int i = 0; i < theArray.Count() - 1; i++)
             {
@@ -51,6 +49,10 @@ namespace sortingAlgorithmVisualizer
             g.FillRectangle(whiteBrush, i, maxVal - theArray[i], 1, maxVal);
             g.FillRectangle(whiteBrush, v, maxVal - theArray[v], 1, maxVal);
 
+
+        }
+        public void reDraw()
+        {
 
         }
     }
