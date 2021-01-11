@@ -40,6 +40,7 @@ namespace sortingAlgorithmVisualizer
         }
         private void btnStart_Click(object sender, EventArgs e) //START BUTTON
         {
+            if (theArray == null) btnReset_Click(null, null); //to allow the user to start sorting without first hitting reset
             bgw = new BackgroundWorker();
             bgw.WorkerSupportsCancellation = true;
             bgw.DoWork += new DoWorkEventHandler(bgw_DoWork);
@@ -54,6 +55,7 @@ namespace sortingAlgorithmVisualizer
             }
             else
             {
+                if (bgw.IsBusy) return;
                 int numEntries = panel1.Width;
                 int maxVal = panel1.Height;
                 paused = false;
