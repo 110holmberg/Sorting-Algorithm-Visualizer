@@ -12,6 +12,7 @@ namespace sortingAlgorithmVisualizer
         private int[] theArray;
         private Graphics g;
         private int maxVal;
+
         Brush whiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush blackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
         public mergeSortEngine(int[] theArrayIn, Graphics gIn, int maxValIn)
@@ -22,62 +23,89 @@ namespace sortingAlgorithmVisualizer
         }
         public void nextStep()
         {
-            List<int> unsorted = theArray.Cast<int>().ToList();
-            mergeSort(unsorted);
-        }
-        public List<int> mergeSort(List<int> unsorted)
-        {
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
-            int middle = unsorted.Count() / 2;
-            for (int i =0; i < middle; i++)
+            theArray = mergeSort(theArray);
+            for (int i = 0; i < theArray.Count(); i++)
             {
-                left.Add(unsorted[i]);
+                drawBar(i, theArray[i]);
+            }
 
-            }
-            for (int i = middle; i < theArray.Count(); i++)
-            {
-                right.Add(unsorted[i]);
-            }
-            left = mergeSort(left);
-            right = mergeSort(right);
-            return merge(left, right);
         }
-        public List<int> merge(List<int> left, List<int> right)
+        public int[] mergeSort(int[] numbers)
         {
-            List<int> result = new List<int>();
-            while (left.Count > 0 || right.Count > 0)
+            if (numbers.Count() <=1)
             {
-                if (left.Count > 0 || right.Count > 0)
+                return numbers;
+            }
+            var left = new List<int>();
+            var right = new List<int>();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i % 2 > 0)
                 {
-                    if (left.Count > 0 && right.Count > 0)
-                    {
-                        if (left.First() <= right.First())
-                        {
-                            result.Add(left.First());
-                            left.Remove(left.First());
-                        }
-                        else
-                        {
-                            result.Add(right.First());
-                            right.Remove(right.First());
-                        }
-                    }
-                    else if (left.Count > 0)
-                    {
-                        result.Add(left.First());
-                        left.Remove(left.First());
-                    }
-                    else if (right.Count > 0)
-                    {
-                        result.Add(right.First());
-
-                        right.Remove(right.First());
-                    }
+                    left.Add(numbers[i]);
+                }
+                else
+                {
+                    right.Add(numbers[i]);
+                }
+                theArray = (left.Concat(right).ToArray());
+                for (int j = 0; j < theArray.Count(); j++)
+                {
+                    drawBar(j, theArray[j]);
                 }
             }
-            return result;
+            left = mergeSort(left.ToArray()).ToList();
+            right = mergeSort(right.ToArray()).ToList();
+            return merge(left, right);
+
         }
+        public int[] merge(List<int> left, List<int> right)
+        {
+            var result = new List<int>();
+            while (notEmpty(left) && notEmpty(right))
+            {
+                if (left.First() <= right.First())
+                {
+                    moveValueFromSourceToResult(left, result);
+                    theArray = left.Concat(right).ToArray();
+                    for (int j = 0; j < theArray.Count(); j++)
+                    {
+                        drawBar(j, theArray[j]);
+                    }
+                }
+                else
+                {
+                    moveValueFromSourceToResult(right, result);
+                    theArray = left.Concat(right).ToArray();
+                    for (int j = 0; j < theArray.Count(); j++)
+                    {
+                        drawBar(j, theArray[j]);
+                    }
+                }
+
+            }
+            while (notEmpty(left))
+            {
+                moveValueFromSourceToResult(left, result);
+            }
+            while (notEmpty(right))
+            {
+                moveValueFromSourceToResult(right, result);
+            }
+            return result.ToArray();
+        }
+
+        private static bool notEmpty(List<int> list)
+        {
+            return list.Count() > 0;
+        }
+
+        public void moveValueFromSourceToResult(List<int> list, List<int> result)
+        {
+            result.Add(list.First());
+            list.RemoveAt(0);
+        }
+
         public bool isSorted()
         {
             for (int i = 0; i < theArray.Count() - 1; i++)
